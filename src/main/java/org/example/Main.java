@@ -8,7 +8,7 @@ public class Main {
         //String - data variable
         //firstName - variable name
         //"Kiryl" - value
-        
+
         String firstName = "Kiryl";
         String partyName = " 'Sensation' ";
         int age = 30;
