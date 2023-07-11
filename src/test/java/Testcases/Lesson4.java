@@ -1,15 +1,9 @@
 package Testcases;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Lesson4 {
+public class Lesson4 extends BaseTest{
 
-    public ChromeDriver driver;
     public String myForkURL = "https://test.my-fork.com/";
     private String inputId = "//input[@id='email']";
     private String inputPass = "//input[@id='password']";
@@ -19,15 +13,6 @@ public class Lesson4 {
     private static final String email = "email@gmail.com";
     private static final String password = "password";
 
-
-    @BeforeMethod
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "/Users/kirylmarkau/Desktop/HundredKProject/src/test/resources/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-    }
-
     public void openSignInPage() throws InterruptedException {
         driver.get(myForkURL);
         driver.findElement(By.xpath("//div[@id='log-in-button']")).click();
@@ -36,7 +21,7 @@ public class Lesson4 {
     @Test
     public void EmailPassLoginFieldsValidation() throws InterruptedException {
 
-    openSignInPage();
+        openSignInPage();
 
         Thread.sleep(2000);
         System.out.println(driver.findElement(By.xpath(inputId)).isDisplayed());
@@ -49,7 +34,7 @@ public class Lesson4 {
     @Test
     public void TryToLoginUsingInvalidIDandPass() throws InterruptedException {
 
-    openSignInPage();
+        openSignInPage();
 
         //driver.findElement(By.xpath(inputId)).sendKeys("email@gmail.com");
         driver.findElement(By.xpath(inputId)).sendKeys(email);
@@ -61,7 +46,7 @@ public class Lesson4 {
     @Test
     public void InvalidEmailandPasswordErrorMessageValidation() throws InterruptedException {
 
-    openSignInPage();
+        openSignInPage();
 
         driver.findElement(By.xpath(inputId)).sendKeys(email);
         driver.findElement(By.xpath(inputPass)).sendKeys(password);
@@ -74,16 +59,11 @@ public class Lesson4 {
     @Test
     public void RememberMeCheckboxValidation() throws InterruptedException {
 
-    openSignInPage();
+        openSignInPage();
 
         System.out.println(driver.findElement(By.xpath(inputIDselectedByDefault)).isSelected());
     }
 
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
-
-    }
 
 }
 
