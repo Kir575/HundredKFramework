@@ -1,9 +1,14 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
-    public class LoginPage extends BaseMain {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LoginPage extends BaseMain {
 
         public LoginPage(ChromeDriver driver) {
             super(driver);
@@ -16,6 +21,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
         private static final String password = "password";
         private String loginErrors = "//div[@class='test-login-errors']";
         private String inputIDselectedByDefault = "//input[@id='auth-page-remember-me']";
+        private String signUpButton = "//a[@href='https://test.my-fork.com/register']";
+
         //boolean checkBox;
 
 
@@ -52,6 +59,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
         public void checkIfCheckboxIsSelected() throws InterruptedException {
             System.out.println(driver.findElement(By.xpath(inputIDselectedByDefault)).isSelected());
 
+        }
+
+        public void clickSignUpButton() throws InterruptedException {
+            driver.findElement(By.xpath(signUpButton)).click();
+
+        }
+
+        public  void jobTitleDropDownArray() throws InterruptedException {
+            WebElement dropDownElement = driver.findElement(By.id("job-title"));
+            Select dropDown = new Select(dropDownElement);
+            List<WebElement> options = new ArrayList<>();
+            options = dropDown.getOptions();
+            for (int i = 0; i < options.size(); i++){
+                System.out.println(options.get(i).getText());
+            }
         }
 
     }

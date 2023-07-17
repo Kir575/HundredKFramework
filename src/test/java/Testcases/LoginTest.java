@@ -1,6 +1,11 @@
 package Testcases;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginTest extends BaseTest{
 
@@ -31,6 +36,14 @@ public class LoginTest extends BaseTest{
 
         homePage.openSignInPage();
         loginPage.checkIfCheckboxIsSelected();
+
+    }
+
+    @Test
+    public  void JobTitleDropdownSignUp() throws InterruptedException{
+        homePage.openSignInPage();
+        loginPage.clickSignUpButton();
+        loginPage.jobTitleDropDownArray();
 
     }
 
