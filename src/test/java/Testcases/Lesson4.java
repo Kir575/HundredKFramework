@@ -1,6 +1,11 @@
 package Testcases;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class Lesson4 extends BaseTest{
 
@@ -36,10 +41,12 @@ public class Lesson4 extends BaseTest{
 
         openSignInPage();
 
-        //driver.findElement(By.xpath(inputId)).sendKeys("email@gmail.com");
         driver.findElement(By.xpath(inputId)).sendKeys(email);
         driver.findElement(By.xpath(inputPass)).sendKeys(password);
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+
+        WebDriverWait waitTryToLoginUsingInvalidIdAndPass = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitTryToLoginUsingInvalidIdAndPass.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickSubmit_Btn)));
         driver.findElement(By.xpath(clickSubmit_Btn)).click();
     }
 
@@ -51,8 +58,10 @@ public class Lesson4 extends BaseTest{
         driver.findElement(By.xpath(inputId)).sendKeys(email);
         driver.findElement(By.xpath(inputPass)).sendKeys(password);
         Thread.sleep(1000);
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
         driver.findElement(By.xpath(clickSubmit_Btn)).click();
         Thread.sleep(2000);
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
         System.out.println(driver.findElement(By.xpath(loginErrors)).isDisplayed());
     }
 
