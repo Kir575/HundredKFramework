@@ -29,7 +29,7 @@ public class BaseTest {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+       // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
 
 
         //DevTools devTools = ((ChromeDriver) driver).getDevTools();
@@ -41,7 +41,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        //driver.quit();
 
     }
 

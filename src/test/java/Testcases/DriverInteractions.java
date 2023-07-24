@@ -30,7 +30,7 @@ public class DriverInteractions extends  BaseTest {
     public void Test2() {
         driver.get("http://amazon.com");
         driver.switchTo().newWindow(WindowType.TAB);
-        //driver.findElement(By.id("twotabsearchtextbox")).sendKeys("laptop");
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("laptop");
         List<String> tabHandler = new ArrayList<>(driver.getWindowHandles());
         System.out.println(tabHandler.size());
         driver.switchTo().newWindow(WindowType.TAB);
@@ -41,7 +41,14 @@ public class DriverInteractions extends  BaseTest {
         driver.switchTo().window(tabHandler.get(0));
         driver.switchTo().window(tabHandler.get(4));
         driver.navigate().to("https://test.my-fork.com");
+    }
 
+    @Test
+    public void Test2A() {
+        driver.get("http://amazon.com");
+        driver.switchTo().newWindow(WindowType.TAB);
+        driver.navigate().to("http://bestbuy.com");
+        homePage.WindowHandling(0);
     }
 
     @Test
@@ -50,7 +57,12 @@ public class DriverInteractions extends  BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,3000)","");
         js.executeScript("window.scrollBy(0,-2500)","");
+    }
 
-
+    @Test
+    public void Test3A() {
+        driver.get("http://amazon.com");
+        homePage.ScrollingThePage(3000);
+        homePage.ScrollingThePage(-1000);
     }
 }

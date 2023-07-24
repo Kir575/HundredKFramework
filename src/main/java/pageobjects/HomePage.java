@@ -14,6 +14,5 @@ public class HomePage extends BaseMain{
     public void openSignInPage() throws InterruptedException {
         driver.get(myForkURL);
         driver.findElement(By.xpath("//div[@id='log-in-button']")).click();
-
     }
 }

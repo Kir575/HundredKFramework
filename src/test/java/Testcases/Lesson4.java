@@ -1,11 +1,15 @@
 package Testcases;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Lesson4 extends BaseTest{
 
@@ -28,11 +32,19 @@ public class Lesson4 extends BaseTest{
 
         openSignInPage();
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
+        WebDriverWait waitToInputId = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitToInputId.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(inputId)));
         System.out.println(driver.findElement(By.xpath(inputId)).isDisplayed());
-        Thread.sleep(2000);
+
+        //Thread.sleep(2000);
+        WebDriverWait waitToInputPass = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitToInputPass.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(inputId)));
         System.out.println(driver.findElement(By.xpath(inputPass)).isDisplayed());
-        Thread.sleep(2000);
+
+        //Thread.sleep(2000);
+        WebDriverWait waitToClickSubmitBtn = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitToClickSubmitBtn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickSubmit_Btn)));
         System.out.println(driver.findElement(By.xpath(clickSubmit_Btn)).isDisplayed());
     }
 
@@ -48,6 +60,7 @@ public class Lesson4 extends BaseTest{
         WebDriverWait waitTryToLoginUsingInvalidIdAndPass = new WebDriverWait(driver,Duration.ofSeconds(20));
         waitTryToLoginUsingInvalidIdAndPass.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickSubmit_Btn)));
         driver.findElement(By.xpath(clickSubmit_Btn)).click();
+
     }
 
     @Test
@@ -57,11 +70,16 @@ public class Lesson4 extends BaseTest{
 
         driver.findElement(By.xpath(inputId)).sendKeys(email);
         driver.findElement(By.xpath(inputPass)).sendKeys(password);
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+        WebDriverWait waitToClickSubmitBtn = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitToClickSubmitBtn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickSubmit_Btn)));
         driver.findElement(By.xpath(clickSubmit_Btn)).click();
-        Thread.sleep(2000);
+
+        //Thread.sleep(2000);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+        WebDriverWait waitLoginErrorsDisplayed = new WebDriverWait(driver,Duration.ofSeconds(20));
+        waitLoginErrorsDisplayed.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(clickSubmit_Btn)));
         System.out.println(driver.findElement(By.xpath(loginErrors)).isDisplayed());
     }
 
@@ -72,6 +90,19 @@ public class Lesson4 extends BaseTest{
 
         System.out.println(driver.findElement(By.xpath(inputIDselectedByDefault)).isSelected());
     }
+
+    @Test
+    public void NewTabHandles() throws InterruptedException{
+        WebDriver driver = new ChromeDriver();
+        String myForkURL = "https://test.my-fork.com/";
+        String singUp = "https://test.my-fork.com/register";
+        driver.navigate().to(myForkURL);
+        driver.switchTo().newWindow(WindowType.TAB);
+        driver.get(singUp);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+    }
+
 
 
 }
