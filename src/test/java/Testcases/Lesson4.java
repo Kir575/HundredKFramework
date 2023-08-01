@@ -12,7 +12,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class Lesson4 extends BaseTest{
-
     public String myForkURL = "https://test.my-fork.com/";
     private String inputId = "//input[@id='email']";
     private String inputPass = "//input[@id='password']";

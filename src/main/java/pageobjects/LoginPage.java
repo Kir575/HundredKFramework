@@ -27,7 +27,7 @@ public class LoginPage extends BaseMain {
         private String inputIDselectedByDefault = "//input[@id='auth-page-remember-me']";
         private String signUpButton = "//a[@href='https://test.my-fork.com/register']";
 
-        //boolean checkBox;
+        boolean checkBox;
 
 
         public void EmailPassLoginFieldsValidation() throws InterruptedException {
